@@ -31,7 +31,7 @@ app.use(
   })
 );
 
-//hoisting
+// ROUTES
 
 // GET /
 app.get("/", async (req, res) => {
