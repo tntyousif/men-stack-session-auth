@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const session = require('express-session');
 require('dotenv').config();
 require('./config/database');
+const MongoStore = require("connect-mongo");
 
 
 //controllers
@@ -28,6 +29,9 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI,
+    }),
   })
 );
 
