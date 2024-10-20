@@ -33,6 +33,7 @@ app.use(
 
 // ROUTES
 
+//public route
 // GET /
 app.get("/", async (req, res) => {
     res.render("index.ejs", {
@@ -41,6 +42,15 @@ app.get("/", async (req, res) => {
 });
 
 app.use('/auth', authController);
+
+// protacted route
+app.get("/vip-lounge",async (req, res) => {
+  if (req.session.user) {
+    res.send(`Welcome to the party ${req.session.user.username}.`);
+  } else {
+    res.send("Sorry, no guests allowed.");
+  }
+});
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
